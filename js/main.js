@@ -1,13 +1,34 @@
 /* global data */
 /* exported data */
 
-var $photo = document.querySelector('.placeholder-img');
-var $urlField = document.querySelector('#photo-url');
+const $photo = document.querySelector('.placeholder-img');
+const $urlField = document.querySelector('#photo-url');
+const $titleField = document.querySelector('#title');
+const $notesField = document.querySelector('#notes');
+const $form = document.querySelector('.entry');
+const newEntryObj = {
+  entryId: 0,
+  title: '',
+  photoUrl: '',
+  notes: ''
+};
 
-document.addEventListener('submit', function (event) {
-  event.preventDefault();
+$urlField.addEventListener('input', function (event) {
+  $photo.setAttribute('src', $urlField.value);
+  $photo.setAttribute('alt', 'User Submitted Photo');
 });
 
-document.addEventListener('input', function (event) {
-  $photo.setAttribute('src', $urlField.value);
+document.addEventListener('submit', function (event) {
+  newEntryObj.entryId = data.nextEntryId;
+  data.nextEntryId++;
+  newEntryObj.title = $titleField.value;
+  newEntryObj.photoUrl = $urlField.value;
+  newEntryObj.notes = $notesField.value;
+
+  data.entries.unshift(newEntryObj);
+
+  $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $photo.setAttribute('alt', 'placeholder-image-square');
+
+  $form.reset();
 });
