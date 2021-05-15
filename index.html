@@ -19,7 +19,27 @@
   </header>
   <main>
     <div data-view="entry-form">
-
+      <form action="" method="GET" class="entry">
+        <div class="form-header">
+          <h1 class="form-new-entry">
+            New Entry
+          </h1>
+          <img class="placeholder-img" src="images/placeholder-image-square.jpg" alt="placeholder-image-square">
+        </div>
+        <div class="form-area">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" required>
+        </div>
+        <div class="form-area">
+          <label for="photo-url">Photo URL</label>
+          <input type="url" name="photo-url" id="photo-url">
+        </div>
+        <div class="form-area">
+          <label for="notes">Notes</label>
+          <input type="text-area" name="notes" id="notes" required>
+        </div>
+        <input type="submit" name="save" id="save" value="save">
+      </form>
     </div>
   </main>
   <script src="js/data.js"></script>
