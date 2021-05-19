@@ -88,3 +88,9 @@ textarea:focus {
   outline-color: #3a5dc7;
   outline-width: 4px;
 }
+
+.entries-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+}
