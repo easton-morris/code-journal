@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: grey;
+}
+
+header {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #3a5dc7;
+  color: white;
+}
+
+.journal-header {
+  font-weight: lighter;
+  padding-left: 5%;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header {
+  display: flex;
+  justify-content: start;
+  flex-basis: 100%;
+}
+
+.img-area {
+  display: flex;
+  justify-content: center;
+}
+
+.placeholder-img {
+  height: 35vh;
+  border-style: hidden;
+  border-radius: 0.25rem;
+}
+
+.form-area-title,
+.form-area-url,
+.form-area-notes {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+label {
+  margin: 0.25rem;
+  font-weight: bolder;
+}
+
+input,
+textarea {
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-color: #929291;
+  padding: 0.5rem;
+}
+
+textarea {
+  font-family: inherit;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-button > input {
+  cursor: pointer;
+  background-color: #3a5dc7;
+  color: whitesmoke;
+  border-style: hidden;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem;
+}
+
+input:focus,
+textarea:focus {
+  outline-style: solid;
+  outline-color: #3a5dc7;
+  outline-width: 4px;
+}
