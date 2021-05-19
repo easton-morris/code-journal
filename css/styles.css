@@ -92,5 +92,35 @@ textarea:focus {
 .entries-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 2rem;
+}
+
+.new-entry-button {
+  cursor: pointer;
+  background-color: #3a5dc7;
+  color: whitesmoke;
+  border-style: hidden;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem;
+  height: 40%;
+}
+
+.entries-area {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  align-items: center;
+}
+
+.entries-img {
+  height: 35vh;
+  border-style: hidden;
+  border-radius: 0.25rem;
 }
