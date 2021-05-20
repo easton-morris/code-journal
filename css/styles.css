@@ -111,6 +111,11 @@ textarea:focus {
   justify-content: space-evenly;
 }
 
+.entries-text-area {
+  display: flex;
+  flex-direction: column;
+}
+
 ul {
   list-style-type: none;
 }
@@ -120,7 +125,7 @@ li {
 }
 
 .entries-img {
-  height: 35vh;
+  max-width: 100%;
   border-style: hidden;
   border-radius: 0.25rem;
 }

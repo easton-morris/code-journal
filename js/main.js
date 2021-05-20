@@ -50,7 +50,7 @@ function newEntry(entry) {
   $newImg.setAttribute('alt', 'User Submitted Image');
   $newDiv1.appendChild($newImg);
   const $newDiv2 = document.createElement('div');
-  $newDiv2.setAttribute('class', 'column-half');
+  $newDiv2.setAttribute('class', 'column-half entries-text-area');
   $newLi.appendChild($newDiv2);
   const $newH3 = document.createElement('h3');
   $newH3.textContent = $newTitle;
@@ -63,6 +63,8 @@ function newEntry(entry) {
   entriesArea.appendChild($newLi);
 }
 
-for (let i = 0; i < data.entries.length; i++) {
-  newEntry(data.entries[i]);
-}
+document.addEventListener('DOMContentLoaded', function (event) {
+  for (let i = 0; i < data.entries.length; i++) {
+    newEntry(data.entries[i]);
+  }
+});
