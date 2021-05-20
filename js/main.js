@@ -32,3 +32,22 @@ document.addEventListener('submit', function (event) {
 
   $form.reset();
 });
+
+function newEntry(entry) {
+  const entriesArea = document.querySelector('div[data-view="entries"]');
+  const $newPhoto = entry.photoUrl;
+  const $newTitle = entry.title;
+  const $newNotes = entry.notes;
+
+  const $newLi = document.createElement('li');
+  $newLi.setAttribute('class', 'row');
+  const $newDiv1 = document.createElement('div');
+  $newDiv1.setAttribute('class', 'column-half');
+  $newLi.appendChild($newDiv1);
+  const $newImg = document.createElement('img');
+  $newImg.setAttribute('class', 'entries-img');
+  $newImg.setAttribute('src', $newPhoto);
+  $newDiv1.appendChild($newImg);
+  const $newDiv2 = document.createElement('div');
+
+}
