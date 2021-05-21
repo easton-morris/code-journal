@@ -16,6 +16,10 @@ header {
   color: white;
 }
 
+h3 {
+  overflow: clip;
+}
+
 .journal-header {
   font-weight: lighter;
   padding-left: 5%;
