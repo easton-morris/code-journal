@@ -34,13 +34,13 @@ document.addEventListener('submit', function (event) {
 });
 
 function newEntry(entry) {
-  const entriesArea = document.querySelector('ul');
+  const entriesArea = document.querySelector('.entries-list');
   const $newPhoto = entry.photoUrl;
   const $newTitle = entry.title;
   const $newNotes = entry.notes;
 
   const $newLi = document.createElement('li');
-  $newLi.setAttribute('class', 'row');
+  $newLi.setAttribute('class', 'row entry-item');
   const $newDiv1 = document.createElement('div');
   $newDiv1.setAttribute('class', 'column-half');
   $newLi.appendChild($newDiv1);

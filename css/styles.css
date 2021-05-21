@@ -104,6 +104,7 @@ textarea:focus {
   letter-spacing: 0.05rem;
   padding: 0.75rem;
   height: 40%;
+  border-radius: 0.25rem;
 }
 
 .entries-area {
@@ -116,16 +117,39 @@ textarea:focus {
   flex-direction: column;
 }
 
-ul {
+.entries-area > ul {
   list-style-type: none;
 }
 
-li {
+.entry-item {
   align-items: center;
+  margin: 2rem;
 }
 
 .entries-img {
   max-width: 100%;
   border-style: hidden;
   border-radius: 0.25rem;
+}
+
+nav {
+  margin: 2rem;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited,
+a:focus {
+  color: white;
+}
+
+a:hover {
+  color: white;
+}
+
+.nav-item {
+  background: none;
+  color: white;
 }
