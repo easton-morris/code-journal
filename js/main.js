@@ -12,6 +12,8 @@ const newEntryObj = {
   photoUrl: '',
   notes: ''
 };
+const $newEntryButton = document.querySelector('.new-entry-button');
+const $submitButton = document.querySelector('#save');
 
 $urlField.addEventListener('input', function (event) {
   $photo.setAttribute('src', $urlField.value);
@@ -64,7 +66,30 @@ function newEntry(entry) {
 }
 
 document.addEventListener('DOMContentLoaded', function (event) {
-  for (let i = 0; i < data.entries.length; i++) {
-    newEntry(data.entries[i]);
+  if (data.entries.length > 0) {
+    for (let i = 0; i < data.entries.length; i++) {
+      newEntry(data.entries[i]);
+    }
+  } else {
+    const entriesArea = document.querySelector('.entries-list');
+    const $emptyListText = document.createElement('p');
+    $emptyListText.textContent = 'No entries have been recorded.';
+    entriesArea.appendChild($emptyListText);
   }
+});
+
+$newEntryButton.addEventListener('click', function (event) {
+  const $entryForm = document.querySelector('div[data-view="entry-form"]');
+  const $entriesArea = document.querySelector('#entries');
+
+  $entriesArea.setAttribute('class', 'hidden');
+  $entryForm.setAttribute('class', '');
+});
+
+$submitButton.addEventListener('click', function (event) {
+  const $entryForm = document.querySelector('div[data-view="entry-form"]');
+  const $entriesArea = document.querySelector('#entries');
+
+  $entriesArea.setAttribute('class', '');
+  $entryForm.setAttribute('class', 'hidden');
 });

@@ -35,9 +35,11 @@ header {
 .img-area {
   display: flex;
   justify-content: center;
+  max-width: 100%;
 }
 
 .placeholder-img {
+  max-width: 100%;
   height: 35vh;
   border-style: hidden;
   border-radius: 0.25rem;
