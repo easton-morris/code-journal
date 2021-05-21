@@ -14,6 +14,7 @@ const newEntryObj = {
 };
 const $newEntryButton = document.querySelector('.new-entry-button');
 const $submitButton = document.querySelector('#save');
+const $entriesLink = document.querySelector('#entries-link');
 
 $urlField.addEventListener('input', function (event) {
   $photo.setAttribute('src', $urlField.value);
@@ -84,6 +85,8 @@ $newEntryButton.addEventListener('click', function (event) {
 
   $entriesArea.setAttribute('class', 'hidden');
   $entryForm.setAttribute('class', '');
+
+  data.view = 'entry-form';
 });
 
 $submitButton.addEventListener('click', function (event) {
@@ -92,4 +95,32 @@ $submitButton.addEventListener('click', function (event) {
 
   $entriesArea.setAttribute('class', '');
   $entryForm.setAttribute('class', 'hidden');
+
+  data.view = 'entries-view';
+});
+
+$entriesLink.addEventListener('click', function (event) {
+  const $entryForm = document.querySelector('div[data-view="entry-form"]');
+  const $entriesArea = document.querySelector('#entries');
+
+  $entriesArea.setAttribute('class', '');
+  $entryForm.setAttribute('class', 'hidden');
+
+  data.view = 'entries-view';
+});
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  if (data.view === 'entry-form') {
+    const $entryForm = document.querySelector('div[data-view="entry-form"]');
+    const $entriesArea = document.querySelector('#entries');
+
+    $entriesArea.setAttribute('class', 'hidden');
+    $entryForm.setAttribute('class', '');
+  } else if (data.view === 'entries-view') {
+    const $entryForm = document.querySelector('div[data-view="entry-form"]');
+    const $entriesArea = document.querySelector('#entries');
+
+    $entriesArea.setAttribute('class', '');
+    $entryForm.setAttribute('class', 'hidden');
+  }
 });
