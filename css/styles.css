@@ -18,6 +18,7 @@ header {
 
 h3 {
   overflow: clip;
+  padding-left: 1rem;
 }
 
 .journal-header {
@@ -118,9 +119,19 @@ textarea:focus {
   justify-content: space-evenly;
 }
 
+.entries-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 .entries-text-area {
   display: flex;
   flex-direction: column;
+}
+
+.entries-text-area > p {
+  padding-left: 1rem;
 }
 
 .entries-area > ul {
@@ -128,18 +139,24 @@ textarea:focus {
 }
 
 .entry-item {
+  display: flex;
   align-items: center;
   margin: 2rem;
 }
 
 .entries-img {
-  max-width: 100%;
+  max-width: 90%;
   border-style: hidden;
   border-radius: 0.25rem;
+  margin: 1rem;
 }
 
-nav {
+.nav {
   margin: 2rem;
+}
+
+.nav-list {
+  list-style-type: none;
 }
 
 a:link {
