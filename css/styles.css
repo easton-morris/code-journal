@@ -135,6 +135,7 @@ textarea:focus {
 
 .entries-text-area > p {
   padding-left: 1rem;
+  padding-right: 1rem;
   width: 100%;
 }
 

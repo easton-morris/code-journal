@@ -16,8 +16,10 @@ const $newEntryButton = document.querySelector('.new-entry-button');
 const $entriesLink = document.querySelector('#entries-link');
 
 $form.addEventListener('input', function (event) {
-  $photo.setAttribute('src', $urlField.value);
-  $photo.setAttribute('alt', 'User Submitted Photo');
+  if (event.target.getAttribute('id') === 'photo-url') {
+    $photo.setAttribute('src', $urlField.value);
+    $photo.setAttribute('alt', 'User Submitted Photo');
+  }
 });
 
 document.addEventListener('submit', function (event) {
