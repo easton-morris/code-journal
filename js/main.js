@@ -129,7 +129,11 @@ const $entriesList = document.querySelector('.entries-list');
 $entriesList.addEventListener('click', function (event) {
   if (event.target.getAttribute('class') === 'fa fa-edit') {
     const targetId = event.target.closest('li').getAttribute('data-entry-id');
-    data.editing = targetId;
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId.toString() === targetId) {
+        data.editing = i;
+      }
+    }
     data.view = 'entry-form';
     viewChecker(data.view);
   }
