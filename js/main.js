@@ -15,7 +15,6 @@ const newEntryObj = {
 const $newEntryButton = document.querySelector('.new-entry-button');
 const $submitButton = document.querySelector('#save');
 const $entriesLink = document.querySelector('#entries-link');
-const $entryItem = document.querySelectorAll('.entry-item');
 
 $urlField.addEventListener('input', function (event) {
   $photo.setAttribute('src', $urlField.value);
@@ -78,6 +77,11 @@ function viewChecker(view) {
 
     $entriesArea.setAttribute('class', 'hidden');
     $entryForm.setAttribute('class', '');
+    if (data.editing !== null) {
+      $urlField.value = data.entries[data.editing].photoUrl;
+      $titleField.value = data.entries[data.editing].title;
+      $notesField.value = data.entries[data.editing].notes;
+    }
   } else if (view === 'entries-view') {
     const $entryForm = document.querySelector('div[data-view="entry-form"]');
     const $entriesArea = document.querySelector('#entries');
@@ -108,16 +112,25 @@ $newEntryButton.addEventListener('click', function (event) {
 
 $submitButton.addEventListener('click', function (event) {
   data.view = 'entries-view';
+  data.editing = null;
 });
 
 $entriesLink.addEventListener('click', function (event) {
   data.view = 'entries-view';
+  data.editing = null;
 });
 
 document.addEventListener('DOMContentLoaded', function (event) {
   viewChecker(data.view);
 });
 
-$entryItem.addEventListener('click', function (event) {
-  data.view = 'entry-form';
+const $entriesList = document.querySelector('.entries-list');
+
+$entriesList.addEventListener('click', function (event) {
+  if (event.target.getAttribute('class') === 'fa fa-edit') {
+    const targetId = event.target.closest('li').getAttribute('data-entry-id');
+    data.editing = targetId;
+    data.view = 'entry-form';
+    viewChecker(data.view);
+  }
 });

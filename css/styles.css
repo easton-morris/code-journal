@@ -19,6 +19,7 @@ header {
 h3 {
   overflow: clip;
   padding-left: 1rem;
+  max-width: 80%;
 }
 
 .journal-header {
@@ -117,6 +118,7 @@ textarea:focus {
 .entries-area {
   display: flex;
   justify-content: space-evenly;
+  padding: 1rem;
 }
 
 .entries-list {
@@ -133,6 +135,7 @@ textarea:focus {
 
 .entries-text-area > p {
   padding-left: 1rem;
+  width: 100%;
 }
 
 .entries-area > ul {
@@ -142,14 +145,14 @@ textarea:focus {
 .entry-item {
   display: flex;
   align-items: center;
-  margin: 2rem;
+  padding: 1rem;
 }
 
 .entries-img {
   max-width: 90%;
   border-style: hidden;
   border-radius: 0.25rem;
-  margin: 1rem;
+  padding: 2rem;
 }
 
 .nav {
