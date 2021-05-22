@@ -180,3 +180,8 @@ a:hover {
   background: none;
   color: white;
 }
+
+i {
+  font: icon;
+  font-size: xx-large;
+}
