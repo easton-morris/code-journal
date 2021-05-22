@@ -13,27 +13,39 @@ const newEntryObj = {
   notes: ''
 };
 const $newEntryButton = document.querySelector('.new-entry-button');
-const $submitButton = document.querySelector('#save');
 const $entriesLink = document.querySelector('#entries-link');
 
-$urlField.addEventListener('input', function (event) {
-  $photo.setAttribute('src', $urlField.value);
-  $photo.setAttribute('alt', 'User Submitted Photo');
+$form.addEventListener('input', function (event) {
+  if (event.target.getAttribute('id') === 'photo-url') {
+    $photo.setAttribute('src', $urlField.value);
+    $photo.setAttribute('alt', 'User Submitted Photo');
+  }
 });
 
 document.addEventListener('submit', function (event) {
-  newEntryObj.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  newEntryObj.title = $titleField.value;
-  newEntryObj.photoUrl = $urlField.value;
-  newEntryObj.notes = $notesField.value;
+  if (data.editing === null) {
+    newEntryObj.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    newEntryObj.title = $titleField.value;
+    newEntryObj.photoUrl = $urlField.value;
+    newEntryObj.notes = $notesField.value;
 
-  data.entries.unshift(newEntryObj);
+    data.entries.unshift(newEntryObj);
 
-  $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $photo.setAttribute('alt', 'placeholder-image-square');
+    $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $photo.setAttribute('alt', 'placeholder-image-square');
 
-  $form.reset();
+    $form.reset();
+    data.view = 'entries-view';
+  } else {
+    newEntryObj.entryId = data.entries[data.editing].entryId;
+    newEntryObj.title = $titleField.value;
+    newEntryObj.photoUrl = $urlField.value;
+    newEntryObj.notes = $notesField.value;
+    data.entries[data.editing] = newEntryObj;
+    data.view = 'entries-view';
+    data.editing = null;
+  }
 });
 
 function newEntry(entry) {
@@ -44,6 +56,7 @@ function newEntry(entry) {
 
   const $newLi = document.createElement('li');
   $newLi.setAttribute('class', 'row entry-item');
+  $newLi.setAttribute('data-entry-id', entry.entryId);
   const $newDiv1 = document.createElement('div');
   $newDiv1.setAttribute('class', 'column-half');
   $newLi.appendChild($newDiv1);
@@ -58,6 +71,9 @@ function newEntry(entry) {
   const $newH3 = document.createElement('h3');
   $newH3.textContent = $newTitle;
   $newDiv2.appendChild($newH3);
+  const $editIcon = document.createElement('i');
+  $editIcon.setAttribute('class', 'fa fa-edit');
+  $newDiv2.appendChild($editIcon);
   const $newP = document.createElement('p');
   $newP.setAttribute('class', 'entries-text');
   $newP.textContent = $newNotes;
@@ -73,6 +89,13 @@ function viewChecker(view) {
 
     $entriesArea.setAttribute('class', 'hidden');
     $entryForm.setAttribute('class', '');
+    if (data.editing !== null) {
+      $urlField.value = data.entries[data.editing].photoUrl;
+      $titleField.value = data.entries[data.editing].title;
+      $notesField.value = data.entries[data.editing].notes;
+      $photo.setAttribute('src', $urlField.value);
+      $photo.setAttribute('alt', 'User Submitted Photo');
+    }
   } else if (view === 'entries-view') {
     const $entryForm = document.querySelector('div[data-view="entry-form"]');
     const $entriesArea = document.querySelector('#entries');
@@ -101,14 +124,26 @@ $newEntryButton.addEventListener('click', function (event) {
   data.view = 'entry-form';
 });
 
-$submitButton.addEventListener('click', function (event) {
-  data.view = 'entries-view';
-});
-
 $entriesLink.addEventListener('click', function (event) {
   data.view = 'entries-view';
+  data.editing = null;
 });
 
 document.addEventListener('DOMContentLoaded', function (event) {
   viewChecker(data.view);
+});
+
+const $entriesList = document.querySelector('.entries-list');
+
+$entriesList.addEventListener('click', function (event) {
+  if (event.target.getAttribute('class') === 'fa fa-edit') {
+    const targetId = event.target.closest('li').getAttribute('data-entry-id');
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId.toString() === targetId) {
+        data.editing = i;
+      }
+    }
+    data.view = 'entry-form';
+    viewChecker(data.view);
+  }
 });
