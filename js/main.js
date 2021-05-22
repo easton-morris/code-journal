@@ -13,27 +13,37 @@ const newEntryObj = {
   notes: ''
 };
 const $newEntryButton = document.querySelector('.new-entry-button');
-const $submitButton = document.querySelector('#save');
 const $entriesLink = document.querySelector('#entries-link');
 
-$urlField.addEventListener('input', function (event) {
+$form.addEventListener('input', function (event) {
   $photo.setAttribute('src', $urlField.value);
   $photo.setAttribute('alt', 'User Submitted Photo');
 });
 
 document.addEventListener('submit', function (event) {
-  newEntryObj.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  newEntryObj.title = $titleField.value;
-  newEntryObj.photoUrl = $urlField.value;
-  newEntryObj.notes = $notesField.value;
+  if (data.editing === null) {
+    newEntryObj.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    newEntryObj.title = $titleField.value;
+    newEntryObj.photoUrl = $urlField.value;
+    newEntryObj.notes = $notesField.value;
 
-  data.entries.unshift(newEntryObj);
+    data.entries.unshift(newEntryObj);
 
-  $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $photo.setAttribute('alt', 'placeholder-image-square');
+    $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $photo.setAttribute('alt', 'placeholder-image-square');
 
-  $form.reset();
+    $form.reset();
+    data.view = 'entries-view';
+  } else {
+    newEntryObj.entryId = data.entries[data.editing].entryId;
+    newEntryObj.title = $titleField.value;
+    newEntryObj.photoUrl = $urlField.value;
+    newEntryObj.notes = $notesField.value;
+    data.entries[data.editing] = newEntryObj;
+    data.view = 'entries-view';
+    data.editing = null;
+  }
 });
 
 function newEntry(entry) {
@@ -81,6 +91,8 @@ function viewChecker(view) {
       $urlField.value = data.entries[data.editing].photoUrl;
       $titleField.value = data.entries[data.editing].title;
       $notesField.value = data.entries[data.editing].notes;
+      $photo.setAttribute('src', $urlField.value);
+      $photo.setAttribute('alt', 'User Submitted Photo');
     }
   } else if (view === 'entries-view') {
     const $entryForm = document.querySelector('div[data-view="entry-form"]');
@@ -108,11 +120,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 $newEntryButton.addEventListener('click', function (event) {
   data.view = 'entry-form';
-});
-
-$submitButton.addEventListener('click', function (event) {
-  data.view = 'entries-view';
-  data.editing = null;
 });
 
 $entriesLink.addEventListener('click', function (event) {
