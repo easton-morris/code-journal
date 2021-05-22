@@ -127,7 +127,8 @@ textarea:focus {
 
 .entries-text-area {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .entries-text-area > p {

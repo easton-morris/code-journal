@@ -15,6 +15,7 @@ const newEntryObj = {
 const $newEntryButton = document.querySelector('.new-entry-button');
 const $submitButton = document.querySelector('#save');
 const $entriesLink = document.querySelector('#entries-link');
+const $entryItem = document.querySelectorAll('.entry-item');
 
 $urlField.addEventListener('input', function (event) {
   $photo.setAttribute('src', $urlField.value);
@@ -44,6 +45,7 @@ function newEntry(entry) {
 
   const $newLi = document.createElement('li');
   $newLi.setAttribute('class', 'row entry-item');
+  $newLi.setAttribute('data-entry-id', entry.entryId);
   const $newDiv1 = document.createElement('div');
   $newDiv1.setAttribute('class', 'column-half');
   $newLi.appendChild($newDiv1);
@@ -58,6 +60,9 @@ function newEntry(entry) {
   const $newH3 = document.createElement('h3');
   $newH3.textContent = $newTitle;
   $newDiv2.appendChild($newH3);
+  const $editIcon = document.createElement('i');
+  $editIcon.setAttribute('class', 'fa fa-edit');
+  $newDiv2.appendChild($editIcon);
   const $newP = document.createElement('p');
   $newP.setAttribute('class', 'entries-text');
   $newP.textContent = $newNotes;
@@ -111,4 +116,8 @@ $entriesLink.addEventListener('click', function (event) {
 
 document.addEventListener('DOMContentLoaded', function (event) {
   viewChecker(data.view);
+});
+
+$entryItem.addEventListener('click', function (event) {
+  data.view = 'entry-form';
 });
