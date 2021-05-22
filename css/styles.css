@@ -16,6 +16,11 @@ header {
   color: white;
 }
 
+h3 {
+  overflow: clip;
+  padding-left: 1rem;
+}
+
 .journal-header {
   font-weight: lighter;
   padding-left: 5%;
@@ -35,9 +40,11 @@ header {
 .img-area {
   display: flex;
   justify-content: center;
+  max-width: 100%;
 }
 
 .placeholder-img {
+  max-width: 100%;
   height: 35vh;
   border-style: hidden;
   border-radius: 0.25rem;
@@ -87,4 +94,85 @@ textarea:focus {
   outline-style: solid;
   outline-color: #3a5dc7;
   outline-width: 4px;
+}
+
+.entries-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem;
+}
+
+.new-entry-button {
+  cursor: pointer;
+  background-color: #3a5dc7;
+  color: whitesmoke;
+  border-style: hidden;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem;
+  height: 40%;
+  border-radius: 0.25rem;
+}
+
+.entries-area {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.entries-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.entries-text-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.entries-text-area > p {
+  padding-left: 1rem;
+}
+
+.entries-area > ul {
+  list-style-type: none;
+}
+
+.entry-item {
+  display: flex;
+  align-items: center;
+  margin: 2rem;
+}
+
+.entries-img {
+  max-width: 90%;
+  border-style: hidden;
+  border-radius: 0.25rem;
+  margin: 1rem;
+}
+
+.nav {
+  margin: 2rem;
+}
+
+.nav-list {
+  list-style-type: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited,
+a:focus {
+  color: white;
+}
+
+a:hover {
+  color: white;
+}
+
+.nav-item {
+  background: none;
+  color: white;
 }
