@@ -14,6 +14,7 @@ const newEntryObj = {
 };
 const $newEntryButton = document.querySelector('.new-entry-button');
 const $entriesLink = document.querySelector('#entries-link');
+const $deleteButton = document.querySelector('.delete-button');
 
 $form.addEventListener('input', function (event) {
   if (event.target.getAttribute('id') === 'photo-url') {
@@ -95,6 +96,7 @@ function viewChecker(view) {
       $notesField.value = data.entries[data.editing].notes;
       $photo.setAttribute('src', $urlField.value);
       $photo.setAttribute('alt', 'User Submitted Photo');
+      $deleteButton.setAttribute('class', 'delete-button');
     }
   } else if (view === 'entries-view') {
     const $entryForm = document.querySelector('div[data-view="entry-form"]');
