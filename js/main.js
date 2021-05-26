@@ -14,6 +14,11 @@ const newEntryObj = {
 };
 const $newEntryButton = document.querySelector('.new-entry-button');
 const $entriesLink = document.querySelector('#entries-link');
+const $deleteButton = document.querySelector('.delete-button');
+const $modalBg = document.querySelector('.modal-background');
+const $modalWindow = document.querySelector('.modal-window');
+const $cancelButton = document.querySelector('.cancel-button');
+const $confirmButton = document.querySelector('.confirm-button');
 
 $form.addEventListener('input', function (event) {
   if (event.target.getAttribute('id') === 'photo-url') {
@@ -95,6 +100,7 @@ function viewChecker(view) {
       $notesField.value = data.entries[data.editing].notes;
       $photo.setAttribute('src', $urlField.value);
       $photo.setAttribute('alt', 'User Submitted Photo');
+      $deleteButton.setAttribute('class', 'delete-button');
     }
   } else if (view === 'entries-view') {
     const $entryForm = document.querySelector('div[data-view="entry-form"]');
@@ -146,4 +152,38 @@ $entriesList.addEventListener('click', function (event) {
     data.view = 'entry-form';
     viewChecker(data.view);
   }
+});
+
+$deleteButton.addEventListener('click', function (event) {
+  $modalBg.setAttribute('class', 'modal-background');
+  $modalWindow.setAttribute('class', 'modal-window');
+  event.preventDefault();
+});
+
+$confirmButton.addEventListener('click', function (event) {
+  data.entries.splice(data.editing, 1);
+  const entriesArea = document.querySelector('.entries-list');
+  entriesArea.innerHTML = '';
+
+  if (data.entries.length > 0) {
+    for (let i = 0; i < data.entries.length; i++) {
+      newEntry(data.entries[i]);
+    }
+  } else {
+    const entriesArea = document.querySelector('.entries-list');
+    const $emptyListText = document.createElement('p');
+    $emptyListText.textContent = 'No entries have been recorded.';
+    entriesArea.appendChild($emptyListText);
+  }
+
+  $modalBg.setAttribute('class', 'modal-background hidden');
+  $modalWindow.setAttribute('class', 'modal-window hidden');
+  data.view = 'entries-view';
+  viewChecker(data.view);
+});
+
+$cancelButton.addEventListener('click', function (event) {
+  $modalBg.setAttribute('class', 'modal-background hidden');
+  $modalWindow.setAttribute('class', 'modal-window hidden');
+  event.preventDefault();
 });

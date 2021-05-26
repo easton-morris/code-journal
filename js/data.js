@@ -1,7 +1,7 @@
 /* exported data */
 
 var data = {
-  view: 'entry-form',
+  view: 'entries-view',
   entries: [],
   editing: null,
   nextEntryId: 1
