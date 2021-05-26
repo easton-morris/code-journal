@@ -15,6 +15,10 @@ const newEntryObj = {
 const $newEntryButton = document.querySelector('.new-entry-button');
 const $entriesLink = document.querySelector('#entries-link');
 const $deleteButton = document.querySelector('.delete-button');
+const $modalBg = document.querySelector('.modal-background');
+const $modalWindow = document.querySelector('.modal-window');
+const $cancelButton = document.querySelector('.cancel-button');
+const $confirmButton = document.querySelector('.confirm-button');
 
 $form.addEventListener('input', function (event) {
   if (event.target.getAttribute('id') === 'photo-url') {
@@ -148,4 +152,21 @@ $entriesList.addEventListener('click', function (event) {
     data.view = 'entry-form';
     viewChecker(data.view);
   }
+});
+
+$deleteButton.addEventListener('click', function (event) {
+  $modalBg.setAttribute('class', 'modal-background');
+  $modalWindow.setAttribute('class', 'modal-window');
+  event.preventDefault();
+});
+
+$confirmButton.addEventListener('click', function (event) {
+  data.view = 'entries-view';
+  viewChecker(data.view);
+});
+
+$cancelButton.addEventListener('click', function (event) {
+  $modalBg.setAttribute('class', 'modal-background hidden');
+  $modalWindow.setAttribute('class', 'modal-window hidden');
+  event.preventDefault();
 });
