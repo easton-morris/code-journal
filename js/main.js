@@ -162,6 +162,19 @@ $deleteButton.addEventListener('click', function (event) {
 
 $confirmButton.addEventListener('click', function (event) {
   data.entries.splice(data.editing, 1);
+  const entriesArea = document.querySelector('.entries-list');
+  entriesArea.innerHTML = '';
+
+  if (data.entries.length > 0) {
+    for (let i = 0; i < data.entries.length; i++) {
+      newEntry(data.entries[i]);
+    }
+  } else {
+    const entriesArea = document.querySelector('.entries-list');
+    const $emptyListText = document.createElement('p');
+    $emptyListText.textContent = 'No entries have been recorded.';
+    entriesArea.appendChild($emptyListText);
+  }
 
   $modalBg.setAttribute('class', 'modal-background hidden');
   $modalWindow.setAttribute('class', 'modal-window hidden');
