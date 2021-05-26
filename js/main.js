@@ -161,6 +161,10 @@ $deleteButton.addEventListener('click', function (event) {
 });
 
 $confirmButton.addEventListener('click', function (event) {
+  data.entries.splice(data.editing, 1);
+
+  $modalBg.setAttribute('class', 'modal-background hidden');
+  $modalWindow.setAttribute('class', 'modal-window hidden');
   data.view = 'entries-view';
   viewChecker(data.view);
 });
