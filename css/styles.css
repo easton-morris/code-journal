@@ -158,6 +158,10 @@ textarea:focus {
 
 .nav {
   margin: 2rem;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav-list {
