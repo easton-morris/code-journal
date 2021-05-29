@@ -19,6 +19,7 @@ const $modalBg = document.querySelector('.modal-background');
 const $modalWindow = document.querySelector('.modal-window');
 const $cancelButton = document.querySelector('.cancel-button');
 const $confirmButton = document.querySelector('.confirm-button');
+const $searchValue = document.querySelectorAll('.search-bar').value;
 
 $form.addEventListener('input', function (event) {
   if (event.target.getAttribute('id') === 'photo-url') {
@@ -187,3 +188,29 @@ $cancelButton.addEventListener('click', function (event) {
   $modalWindow.setAttribute('class', 'modal-window hidden');
   event.preventDefault();
 });
+
+const $searchButton = document.querySelector('#search-button');
+
+$searchButton.addEventListener('click', function (event) {
+  titleSearch($searchValue);
+})
+;
+
+function titleSearch(value) {
+  const matchedArray = [];
+  let searchCheck = false;
+  for (let i = 0; i < data.entries.length; i++) {
+    const valueAsArray = value.split(' ');
+    for (let j = 0; j < valueAsArray.length; j++) {
+      const titleAsArray = data.entries[i].title.split(' ');
+      for (let k = 0; k < titleAsArray.length; k++) {
+        if (titleAsArray[k] === valueAsArray[j]) {
+          searchCheck = true;
+        }
+      }
+    }
+    if (searchCheck === true) {
+      matchedArray.push(i);
+    }
+  }
+}
